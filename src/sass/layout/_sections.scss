@@ -1,0 +1,310 @@
+@use "../abstract/" as *;
+
+// Main container
+
+.container {
+  $max-width: rem(1100);
+  $padding: rem(35);
+
+  width: min($max-width, 100% - ($padding * 2));
+  margin-inline: auto;
+}
+
+// Hero section
+
+.logo {
+  width: rem(103);
+  height: rem(40);
+
+  @include breakpoint("large") {
+    width: rem(95);
+  }
+
+  @include breakpoint("medium") {
+    width: rem(90);
+  }
+}
+
+.hero-text,
+.booking-flex {
+  margin-top: rem(140);
+
+  @include breakpoint("large") {
+    margin-top: rem(50);
+  }
+}
+
+.hero-text,
+.booking-text {
+  transform: translateY(100px);
+  opacity: 0;
+
+  animation: slide-up 1000ms ease-out forwards;
+
+  p {
+    margin-top: rem(24);
+  }
+}
+
+.hero,
+.booking {
+  padding-top: rem(65);
+}
+
+.hero {
+  min-height: 115vh;
+  background-image: url("../../assets/homepage/hero-bg-desktop.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+
+  @include breakpoint("large") {
+    background-image: url("../../assets/homepage/hero-bg-tablet.jpg");
+    background-position: top center;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: rem(140);
+  }
+
+  @include breakpoint("medium") {
+    background-image: url("../../assets/homepage/hero-bg-tablet.jpg");
+    padding-bottom: rem(240);
+  }
+
+  @include breakpoint("small") {
+    background-image: url("../../assets/homepage/hero-bg-mobile.jpg");
+  }
+
+  &-container {
+    $max-width: rem(1200);
+    $padding: rem(25);
+
+    width: min($max-width, 100% - ($padding * 2));
+    margin-inline: auto;
+
+    @include breakpoint("large") {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.hero-text {
+  @include breakpoint("large") {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// Reasons
+
+.reasons {
+  background-image: url("../../assets/patterns/pattern-curve-top-right.svg"),
+    url("../../assets/patterns/pattern-curve-top-left.svg");
+  background-position-y: 17.2rem, bottom;
+  background-position-x: left, right;
+  background-repeat: no-repeat;
+
+  @include breakpoint("large") {
+    background-position-y: 7.2rem, bottom;
+    background-position-x: -40rem, right;
+  }
+}
+
+.reason {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__text {
+    position: relative;
+    max-width: rem(445);
+
+    @include breakpoint("large") {
+      margin-bottom: rem(100);
+    }
+
+    @include breakpoint("large") {
+      margin-bottom: rem(60);
+    }
+  }
+
+  @include breakpoint("large") {
+    flex-direction: column;
+    gap: rem(30);
+  }
+
+  &:nth-of-type(2) {
+    @include breakpoint("large") {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+// Highlights
+
+.highlights {
+  padding-top: rem(80);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include breakpoint("large") {
+    padding-block: rem(150);
+  }
+
+  &-flex {
+    display: flex;
+
+    @include breakpoint("large") {
+      flex-direction: column;
+      width: min(rem(650), 100%);
+      margin-inline: auto;
+      gap: rem(50);
+    }
+
+    & > * {
+      width: 100%;
+    }
+
+    .meal {
+      $meal-padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: rem(65);
+
+      transform: translateX(100px);
+      opacity: 0;
+
+      transition: $img-transition;
+
+      @include breakpoint("small") {
+        flex-direction: column;
+        gap: rem(20);
+      }
+
+      &-img {
+        position: relative;
+        z-index: 10;
+      }
+
+      &:nth-child(even) {
+        padding-block: $meal-padding;
+        border-top: 1px solid $clr-neutral-300;
+        border-bottom: 1px solid $clr-neutral-300;
+      }
+
+      &:nth-child(odd) {
+        padding-block: $meal-padding;
+      }
+    }
+  }
+}
+
+// Gathering
+
+.gathering {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background-image: url("../../assets/patterns/pattern-curve-top-right.svg");
+  background-position-y: top;
+  background-position-x: -20rem;
+  background-repeat: no-repeat;
+
+  &-flex {
+    padding-block: rem(150);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include breakpoint("large") {
+      flex-direction: column;
+      justify-content: center;
+      gap: rem(70);
+    }
+
+    .gathering-img {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: "";
+        background-image: url("../../assets/patterns/pattern-lines.svg");
+        background-repeat: no-repeat;
+        top: rem(-39);
+        left: rem(-39);
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+
+  .event-list {
+    margin-top: rem(80);
+
+    @include breakpoint("large") {
+      display: flex;
+      gap: rem(30);
+      margin-top: rem(40);
+    }
+
+    @include breakpoint("small") {
+      display: flex;
+      flex-direction: column;
+      gap: rem(10);
+      margin-top: rem(40);
+    }
+  }
+}
+
+// Reservation
+
+.reservation {
+  padding-block: rem(100);
+  background-image: url("../../assets/homepage/ready-bg-desktop.jpg");
+  background-size: cover;
+}
+
+.reservation-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include breakpoint("large") {
+    flex-direction: column;
+    gap: rem(30);
+  }
+
+  .btn {
+    margin-top: 0;
+  }
+}
+
+// Booking page - booking section
+
+.booking {
+  height: rem(600);
+  background-image: url("../../assets/booking/hero-bg-desktop.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &-flex {
+    display: flex;
+    justify-content: space-between;
+
+    @include breakpoint("large") {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: rem(100);
+    }
+  }
+}

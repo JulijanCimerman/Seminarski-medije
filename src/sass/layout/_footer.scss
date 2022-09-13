@@ -1,0 +1,18 @@
+@use "../abstract/" as *;
+
+.footer {
+  padding-block: rem(90);
+
+  &-flex {
+    display: flex;
+    justify-content: space-between;
+
+    @include breakpoint("medium") {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: rem(40);
+    }
+  }
+}

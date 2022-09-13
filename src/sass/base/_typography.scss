@@ -1,0 +1,234 @@
+@use "../abstract/" as *;
+
+body {
+  font-family: "League Spartan", sans-serif;
+  font-weight: 400;
+  color: $clr-neutral-900;
+}
+
+.hero,
+.booking {
+  font-weight: 300;
+  color: $clr-neutral-100;
+
+  p {
+    line-height: 1.225;
+    max-width: rem(460);
+  }
+}
+
+p:not(.meal p, .footer p) {
+  font-size: clamp(rem(16), 8vw + 0.2rem, rem(22));
+
+  @include breakpoint("large") {
+    text-align: center;
+  }
+}
+
+.form-card {
+  font-size: clamp(rem(14), 4vw + 0.2rem, rem(22));
+  line-height: 1.225;
+  color: $clr-primary-900;
+
+  input,
+  .select {
+    color: $clr-neutral-200;
+
+    &:focus-visible {
+      color: $clr-neutral-900;
+    }
+  }
+
+  .period {
+    opacity: 0.6;
+
+    &.period--active {
+      color: $clr-neutral-900;
+      opacity: 1;
+
+      & svg {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+h1 {
+  font-size: clamp(rem(40), 5vw + 1rem, rem(78));
+  max-width: 13ch;
+  line-height: 1;
+
+  @include breakpoint("large") {
+    text-align: center;
+    margin-inline: auto;
+  }
+}
+
+h2 {
+  position: relative;
+  font-size: clamp(rem(26), 4.65vw + 1rem, rem(48));
+  font-weight: 600;
+  line-height: 1.225;
+  max-width: 13ch;
+  margin-bottom: rem(18);
+
+  @include breakpoint("large") {
+    line-height: 1.1;
+    text-align: center;
+  }
+}
+
+.reasons h2 {
+  @include breakpoint("large") {
+    max-width: max-content;
+  }
+}
+
+h2:not(.gathering h2) {
+  &::before {
+    position: absolute;
+    content: "";
+    background-image: url("../../assets/patterns/pattern-divide.svg");
+    background-repeat: no-repeat;
+    top: rem(-45);
+    left: 0;
+    width: 70px;
+    height: 10px;
+
+    @include breakpoint("large") {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+h3 {
+  position: relative;
+  font-size: rem(22);
+  font-weight: 600;
+
+  &::before {
+    position: absolute;
+    content: "";
+    background-image: url("../../assets/patterns/pattern-divide.svg");
+    background-repeat: no-repeat;
+    top: 50%;
+    left: rem(-100);
+    transform: translateY(-50%);
+    width: 70px;
+    height: 10px;
+
+    @include breakpoint("small") {
+      background-image: none;
+    }
+  }
+}
+
+h3,
+.meal p {
+  @include breakpoint("small") {
+    text-align: center;
+  }
+}
+
+p:not(.hero-text p, .reservation-flex p, .footer p) {
+  font-size: rem(22);
+  max-width: 445px;
+}
+
+.meal p {
+  font-size: clamp(rem(14), 3vw + 1rem, rem(18));
+  width: 100%;
+}
+
+.highlights {
+  color: $clr-neutral-100;
+}
+
+.highlights-text,
+.gathering-text {
+  @include breakpoint("large") {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.event {
+  position: relative;
+  font-size: rem(18);
+  text-transform: uppercase;
+  line-height: 2;
+  color: $clr-neutral-200;
+  letter-spacing: 1.7px;
+
+  transition: $transition;
+
+  &::before {
+    position: absolute;
+    content: "";
+    background-image: url("../../assets/patterns/pattern-lines.svg");
+    background-repeat: no-repeat;
+    top: 50%;
+    left: rem(-130);
+    width: 100px;
+    height: 1.5px;
+
+    transform: translateX(30px);
+    opacity: 0;
+
+    transition: $transition;
+
+    @include breakpoint("large") {
+      width: 50%;
+      bottom: 0;
+      left: 50%;
+      top: unset;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.event-list {
+  @include breakpoint("small") {
+    text-align: center;
+  }
+}
+
+.event.event--active {
+  color: $clr-primary-900;
+}
+
+.event.event--active::before {
+  opacity: 1;
+  transform: translateX(0);
+
+  @include breakpoint("large") {
+    width: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.reservation-flex strong {
+  color: $clr-neutral-100;
+  font-weight: 600;
+  font-size: clamp(rem(24), 4vw + 1rem, rem(48));
+
+  @include breakpoint("large") {
+    text-align: center;
+  }
+}
+
+footer {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.contact {
+  max-width: rem(250);
+}
+
+.person-number-box p {
+  font-weight: 600;
+}

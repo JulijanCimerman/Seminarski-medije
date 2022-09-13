@@ -1,0 +1,188 @@
+@use "../abstract/" as *;
+
+.form-card {
+  $input-padding: em(5);
+  position: relative;
+  background-color: $clr-neutral-100;
+  padding: rem(50);
+  width: min(rem(540), 100%);
+  box-shadow: $card-shadow;
+  transform: translateY(-70px);
+  opacity: 0;
+
+  animation: slide-down 1000ms ease-out forwards 500ms;
+
+  @include breakpoint("large") {
+    padding: rem(45);
+  }
+
+  @include breakpoint("small") {
+    padding: rem(30);
+  }
+
+  @include breakpoint("x-small") {
+    padding: rem(20);
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    background-image: url("../../assets/patterns/pattern-lines.svg");
+    background-repeat: no-repeat;
+    width: 160px;
+    height: 76px;
+    bottom: rem(-39);
+    left: rem(-79);
+
+    @include breakpoint("small") {
+      bottom: rem(-66);
+      left: rem(-89);
+    }
+  }
+
+  input,
+  .select {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba($clr-primary-900, 0.2);
+    cursor: pointer;
+    outline: none;
+
+    transition: $transition;
+
+    &:focus-visible {
+      border-bottom: 1px solid rgba($clr-primary-900, 1);
+    }
+
+    &#name,
+    &#email {
+      padding: 0 0 $input-padding $input-padding;
+    }
+
+    &.input--error {
+      animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      border-bottom: 1px solid $clr-accent-400;
+      color: $clr-accent-400;
+    }
+  }
+
+  div + div,
+  button {
+    margin-top: rem(20);
+  }
+
+  .date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include breakpoint("small") {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: rem(10);
+    }
+
+    .date-box {
+      display: flex;
+      gap: rem(20);
+      align-items: center;
+
+      @include breakpoint("small") {
+        gap: 0;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      input,
+      .select {
+        width: rem(80);
+        text-align: center;
+      }
+
+      input,
+      .select {
+        padding-bottom: $input-padding;
+      }
+    }
+  }
+
+  .select-dropdown {
+    position: relative;
+
+    .icon-arrow {
+      transition: $transition;
+    }
+
+    .icon-arrow--active {
+      transform: rotate(180deg);
+    }
+
+    .dropdown {
+      position: absolute;
+      bottom: -200%;
+      left: 0;
+      width: 100%;
+      background-color: $clr-neutral-100;
+      color: rgba($clr-neutral-200, 0.6);
+      box-shadow: 0 10px 20px rgba($clr-neutral-200, 0.4);
+      pointer-events: none;
+
+      transform: translateY(-50px);
+      opacity: 0;
+
+      transition: $transition;
+
+      &--active {
+        pointer-events: auto;
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .time-period {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: em(3) em(5);
+        cursor: pointer;
+
+        transition: $transition;
+
+        &:hover {
+          color: $clr-neutral-900;
+        }
+
+        .icon-check {
+          opacity: 0;
+          transition: $transition;
+        }
+
+        &--active {
+          color: $clr-neutral-900;
+
+          & .icon-check {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(10);
+
+    .period {
+      text-transform: uppercase;
+    }
+  }
+
+  .person-number-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 $input-padding $input-padding $input-padding;
+    border-bottom: 1px solid $clr-primary-900;
+  }
+}

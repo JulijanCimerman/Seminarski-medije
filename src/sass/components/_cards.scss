@@ -1,0 +1,51 @@
+@use "../abstract/" as *;
+
+.reason {
+  &__img img {
+    box-shadow: $card-shadow;
+  }
+
+  &:nth-of-type(1) .reason__img img {
+    opacity: 0;
+
+    transition: $img-transition;
+
+    &.slide-up {
+      opacity: 1;
+      transform: translateY(-70px);
+    }
+  }
+
+  &:nth-of-type(2) .reason__img img {
+    opacity: 0;
+
+    transition: $img-transition;
+
+    &.slide-down {
+      opacity: 1;
+      transform: translateY(70px);
+
+      @include breakpoint("large") {
+        transform: translateY(-70px);
+        margin-top: rem(70);
+      }
+    }
+  }
+
+  &:nth-of-type(2) .reason__img {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "";
+      background-image: url("../../assets/patterns/pattern-lines.svg");
+      background-repeat: no-repeat;
+      top: 50%;
+      right: rem(-100);
+      width: rem(160);
+      height: rem(76);
+
+      transform: translateY(-50%);
+    }
+  }
+}
